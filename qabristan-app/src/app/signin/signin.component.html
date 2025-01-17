@@ -1,0 +1,7 @@
+<!-- signin.component.html -->
+<div *ngIf="(angularFireAuth.authState | async) as user; else showLogin">
+    <button (click)="logOut()">Log out</button>
+</div>
+<ng-template #showLogin>
+    <button googleSso>Sign in with google</button>
+</ng-template>
