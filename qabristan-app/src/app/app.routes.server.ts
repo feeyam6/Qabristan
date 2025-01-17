@@ -6,11 +6,15 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender,
   },
   {
-    path: '**',
-    renderMode: RenderMode.Prerender,
-  },
-  {
     path: 'signin',
-    renderMode: RenderMode.Prerender,
+    renderMode: RenderMode.Client,
   },
+  { 
+    path: 'require-auth', 
+    renderMode: RenderMode.Client
+   },
+   {
+     path: '**',
+     renderMode: RenderMode.Prerender,
+   },
 ];

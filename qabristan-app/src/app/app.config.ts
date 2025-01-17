@@ -4,13 +4,22 @@ import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
+import { provideHttpClient } from '@angular/common/http';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { routes } from './app.routes';
+import { provideRouter } from '@angular/router';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    //provideRouter(routes),
+    provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    importProvidersFrom(AppRoutingModule),
+    provideHttpClient(),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideAuth(() => getAuth()),
+    importProvidersFrom(),
   ],
 };
